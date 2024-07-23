@@ -1,0 +1,53 @@
+hydra:
+  run:
+    dir: ${dir.home}${dir.data}/outputs/${now:%Y%m%d}${now:-%H%M%S-}${network.model_name}-${data.data_name}
+
+visdom: False
+ddp: false
+
+optim:
+  weight_decay: 0.000
+  optimizer: "Adam"
+  lr: 0.001  # -----------------------------------------------------------
+  beta1: 0.9
+  amsgrad: false
+  eps: 0.00000001
+  lr_decay: 0.966
+
+network:  # -----------------------------------------------------------
+  model_name: cmdNet
+  out_iter: 5
+  in_iter: 3
+  num_filters: 16
+
+training:
+  gpu_id: 0  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  acceleration: 4  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  center_fraction: 0.08
+  batch_size: 1
+  epoch: 150  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  num_worker: 0  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  seed: 1000
+  debug: false
+  test_when_val: False  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  test_interval: 1
+
+dir:
+  service: local
+  home: /home/joe  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  data: /codes/data
+
+log:
+  verbose: info
+
+data:
+  data_name: vsNet  # -=-=-=-=-=-=-=-=-==-=-=-=-=c
+  sequence: coronal_pd  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+#  sequence: coronal_pd_fs  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+#  sequence: sagittal_pd  # -=-=-=-=-=-=-=-=-==-=-=-=-=
+  data_path: /codes/data/  # define the data path here
+  modl: mri_recons/dataset.hdf5
+  modl_sigma: 0.01
+  vsNet: knee
+  fastmri: fastmri
+  fastmri_mask: 'equispaced_fraction'
