@@ -1,5 +1,6 @@
 hydra:
   run:
+    # set the directory of the output file
     dir: ${dir.home}${dir.data}/outputs/${now:%Y%m%d}${now:-%H%M%S-}${network.model_name}-${data.data_name}
 
 visdom: False
@@ -45,9 +46,8 @@ data:
   sequence: coronal_pd  # -=-=-=-=-=-=-=-=-==-=-=-=-=
 #  sequence: coronal_pd_fs  # -=-=-=-=-=-=-=-=-==-=-=-=-=
 #  sequence: sagittal_pd  # -=-=-=-=-=-=-=-=-==-=-=-=-=
-  data_path: /codes/data/  # define the data path here
+  data_path: /home/joe/codes/data/knee  # set the data path here
   modl: mri_recons/dataset.hdf5
   modl_sigma: 0.01
-  vsNet: knee
   fastmri: fastmri
   fastmri_mask: 'equispaced_fraction'
