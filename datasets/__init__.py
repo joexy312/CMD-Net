@@ -5,7 +5,7 @@ import os
 
 def get_dataset(config):
 
-    data_path = os.path.expanduser('~') + config.data.data_path + config.data.vsNet
+    data_path = config.data.data_path
     data_list = load_traindata_path(data_path, config.training.debug, config.data.sequence)
     train_set = MRIDataset(
         data_list['train'],
